@@ -7,7 +7,7 @@ JOIN PERSON P ON A.PERSONID = P.PERSONID
 
 ```
 
-![175](image.png)
+![175](175.png)
 
 
 <BR><BR>
@@ -24,5 +24,5 @@ WHERE E1.SALARY > E2.SALARY
 
 ```
 
-![181](image-1.png)
+![181](181.png)
 
