@@ -8,8 +8,9 @@ LEFT JOIN PERSON P ON A.PERSONID = P.PERSONID;
 
 ![175](175.png)
 
-
 <BR><BR><BR>
+
+
 
 
 # 181.Employees Earning More Than Their Managers
@@ -23,9 +24,9 @@ WHERE E1.SALARY > E2.SALARY;
 
 ![181](181.png)
 
-
-
 <br><br><br>
+
+
 
 
 
@@ -39,10 +40,11 @@ HAVING COUNT(*) > 1;
 ```
 ![182](182.png)
 
-
-
-
 <BR><BR><BR>
+
+
+
+
 
 
 # 183. Customers Who Never Order
@@ -54,7 +56,6 @@ LEFT JOIN ORDERS O ON C.ID = O.CUSTOMERID
 WHERE O.CUSTOMERID IS NULL;
 ```
 ![183](183.png)
-
 
 <BR><BR><BR>
 
@@ -81,6 +82,8 @@ WHERE ID NOT IN (SELECT MIN(ID)
 
 
 
+
+
 # 197. Rising Temperature
 
 ```SQL
@@ -90,3 +93,60 @@ JOIN WEATHER T ON Y.RECORDDATE = T.RECORDDATE-1
 WHERE Y.TEMPERATURE < T.TEMPERATURE;
 ```
 ![197](197.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 511. Game Play Analysis I
+
+```sql
+SELECT PLAYER_ID, MIN(EVENT_DATE) FIRST_LOGIN
+FROM ACTIVITY
+GROUP BY PLAYER_ID
+```
+![511](511.png)
+
+<BR><BR><BR>
+
+
+
+
+
+
+
+# 512 - Game Play Analysis II
+
+```SQL
+SELECT A.PLAYER_ID PLAYER_ID, A.DEVICE_ID DEVICE_ID
+FROM ACTIVITY A
+JOIN (SELECT PLAYER_ID, MIN(EVENT_DATE) EVENTDATE
+	  FROM ACTIVITY
+	  GROUP BY PLAYER_ID) FL 
+ON A.PLAYER_ID = FL.PLAYER_ID AND
+	   A.EVENT_DATE = FL.EVENTDATE;
+```
+![512](512.png)
+
+
+
+
+
+
+
+
+
+
+
+
+```SQL
+SELECT NAME, BONUS
+FROM EMPLOYEE E
+LEFT JOIN BONUS B ON E.EMPID = B.EMPID
+WHERE B.BONUS < 1000 OR
+      B.BONUS IS NULL
+```
+![577](577.png)
