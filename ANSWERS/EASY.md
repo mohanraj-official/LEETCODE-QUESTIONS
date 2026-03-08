@@ -195,7 +195,7 @@ WHERE ROWNUM = 1;
 
 
 
-
+# 595. Big Countries
 
 ```SQL
 SELECT NAME, POPULATION, AREA
@@ -204,3 +204,40 @@ WHERE POPULATION > 25000000 OR
 	   AREA > 6000000;
 ```
 ![595](595.png)
+
+<BR><BR><BR>
+
+
+
+
+
+# 596. Classes More Than 5 Students
+
+```SQL
+SELECT CLASS
+FROM COURSES
+GROUP BY CLASS
+HAVING COUNT(*) >= 5;
+```
+![596](596.png)
+
+<BR><BR><BR>
+
+
+
+
+
+# 597. Friend Requests I: Overall Acceptance Rate
+
+```SQL
+SELECT 
+	ROUND((SELECT COUNT(*) FROM REQUESTACCEPTED) / (SELECT COUNT(*) FROM FRIENDREQUEST), 2) ACCEPT_RATE
+FROM DUAL;
+```
+![597](597.png)
+
+<BR><BR><BR>
+
+
+
+
