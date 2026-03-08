@@ -8,3 +8,21 @@ JOIN PERSON P ON A.PERSONID = P.PERSONID
 ```
 
 ![175](image.png)
+
+
+<BR><BR>
+
+
+# 181.Employees Earning More Than Their Managers
+
+```SQL
+
+SELECT E1.NAME NAME
+FROM EMPLOYEE E1
+JOIN EMPLOYEE E2 ON E1.MANAGERID = E2.ID
+WHERE E1.SALARY > E2.SALARY
+
+```
+
+![181](image-1.png)
+
