@@ -241,3 +241,77 @@ FROM DUAL;
 
 
 
+
+# 603 - Consecutive Available Seats
+
+```SQL
+SELECT S1.SEAT_ID
+  FROM CINEMA S1
+  LEFT JOIN CINEMA S2 ON S1.SEAT_ID = S2.SEAT_ID+1
+  LEFT JOIN CINEMA S3 ON S1.SEAT_ID = S3.SEAT_ID-1
+  WHERE S1.FREE = 1 AND
+        (S2.FREE = 1 OR S3.FREE = 1)
+  ORDER BY S1.SEAT_ID;
+  ```
+![603](603.png)
+
+<BR><BR><BR>
+
+
+
+
+
+
+# 607 - Sales Person
+
+```SQL
+SELECT NAME
+FROM SALESPERSON
+WHERE SALES_ID NOT IN (SELECT SALES_ID
+		       FROM ORDERS
+		       WHERE COM_ID IN (SELECT COM_ID 
+								FROM COMPANY
+								WHERE NAME = 'RED'));
+```
+![607](607.png)
+
+<BR><BR><BR>
+
+
+
+
+
+
+# 610. Traingle Judgment
+
+```SQL
+SELECT X, Y, Z,
+   CASE
+      WHEN X+Y>Z
+      AND Y+Z>X 
+      AND Z+X>Y 
+      THEN 'YES'
+      ELSE 'NO'
+   END AS TRIANGLE
+FROM TRIANGLE;
+```
+![610](610.png)
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
