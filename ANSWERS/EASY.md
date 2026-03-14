@@ -306,6 +306,24 @@ FROM TRIANGLE;
 
 
 
+# 613 - Shortest distance in a Line
+
+```SQL
+SELECT MIN(ABS(P1.X - P2.X)) SHORTEST
+	FROM POINT P1
+	JOIN POINT P2 ON P1.X != P2.X;
+```
+![613](613.png)
+
+<br><br><br>
+
+
+
+
+
+
+
+
 
 
 
