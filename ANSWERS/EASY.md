@@ -322,7 +322,143 @@ SELECT MIN(ABS(P1.X - P2.X)) SHORTEST
 
 
 
+# 619 - Biggest Single Number
 
+```SQL
+SELECT MAX(NUM) NUM
+FROM MYNUMBERS
+WHERE NUM LIKE '_';
+```
+![619](619.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 620 - Not Boring Movies
+
+```SQL
+SELECT ID, MOVIE, DESCRIPTION, RATING
+FROM CINEMA
+WHERE MOD(ID, 2) = 1 AND
+      DESCRIPTION != 'Boring'
+ORDER BY RATING DESC;
+```
+![620](620.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 627 - Swap Sex of Employees
+
+```SQL
+UPDATE SALARY
+SET SEX = CASE
+	      WHEN UPPER(SEX) = 'M' THEN 'F'
+  	      WHEN UPPER(SEX) = 'F' THEN 'M'
+     	    END;
+```
+### BEFORE UPDATE
+![627A](627A.png)
+
+### AFTER UPDATE
+![627B](627B.png)
+
+<BR><BR><BR>
+
+
+
+
+
+
+# 1050 - Actors and Directors who cooperated atleast 3 times
+
+```SQL
+SELECT ACTOR_ID, DIRECTOR_ID
+FROM ACTORDIRECTOR
+GROUP BY ACTOR_ID, DIRECTOR_ID
+HAVING COUNT(*) >= 3;
+```
+![1050](1050.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 1068 - Product Sales Analys 1
+
+```SQL
+SELECT P.PRODUCT_NAME PRODUCT_NAME, S.YEAR YEAR, SUM(S.PRICE) PRICE
+FROM PRODUCT P
+JOIN SALES S ON P.PRODUCT_ID = S.PRODUCT_ID
+GROUP BY P.PRODUCT_NAME, S.YEAR;
+```
+![1068](1068.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 1069 - Product Sales Analasys 2
+
+```SQL
+SELECT PRODUCT_ID, SUM(QUANTITY) TOTAL_QUANTITY
+FROM SALES
+GROUP BY PRODUCT_ID;
+```
+![1069](1069.png)
+
+<br><br><br>
+
+
+
+
+
+
+# 1075 - Project Employee 1
+
+```SQL
+SELECT P.PROJECT_ID PROJECT_ID, ROUND(AVG(E.EXPERIENCE_YEARS), 2) AVERAGE_YEARS
+FROM PROJECT P
+JOIN EMPLOYEE E ON E.EMPLOYEE_ID = P.EMPLOYEE_ID
+GROUP BY P.PROJECT_ID
+```
+![1075](1075.png)
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+```SQL
+SELECT PROJECT_ID
+FROM (SELECT PROJECT_ID, COUNT(*) COUNT
+      FROM PROJECT
+      GROUP BY PROJECT_ID)
+WHERE COUNT = (SELECT MAX(COUNT)
+	         FROM (SELECT PROJECT_ID, COUNT(*) COUNT
+                     FROM PROJECT
+                     GROUP BY PROJECT_ID));
+```
+![1076](1076.png)
 
 
 
