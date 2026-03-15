@@ -446,19 +446,61 @@ GROUP BY P.PROJECT_ID
 
 
 
-
+# 1076 - PROJECT EMPLOYEE 2
 
 ```SQL
 SELECT PROJECT_ID
-FROM (SELECT PROJECT_ID, COUNT(*) COUNT
-      FROM PROJECT
-      GROUP BY PROJECT_ID)
-WHERE COUNT = (SELECT MAX(COUNT)
-	         FROM (SELECT PROJECT_ID, COUNT(*) COUNT
-                     FROM PROJECT
-                     GROUP BY PROJECT_ID));
+FROM PROJECT
+GROUP BY PROJECT_ID
+HAVING COUNT(EMPLOYEE_ID) = (SELECT MAX(COUNT)
+                             FROM (SELECT PROJECT_ID, COUNT(EMPLOYEE_ID) COUNT
+                                    FROM PROJECT
+                                    GROUP BY PROJECT_ID))
 ```
 ![1076](1076.png)
+
+<BR><BR><BR>
+
+
+
+
+
+# 1082 - Sales Analysis 1
+
+```SQL
+SELECT SELLER_ID
+FROM SALES
+GROUP BY SELLER_ID
+HAVING SUM(PRICE) = (SELECT MAX(PRICE)
+		         FROM (SELECT SELLER_ID, SUM(PRICE) PRICE
+                           FROM SALES
+                           GROUP BY SELLER_ID));
+```
+![1082](1082.png)
+
+<br><br><br>
+
+
+
+
+
+# 1083 - Sales Analysys 2
+
+```SQL
+SELECT S.BUYER_ID BUYER_ID
+FROM SALES S
+JOIN PRODUCT P ON P.PRODUCT_ID = S.PRODUCT_ID
+GROUP BY S.BUYER_ID
+HAVING SUM(CASE WHEN PRODUCT_NAME = 'S8' THEN 1 ELSE 0 END) > 0 AND
+	 SUM(CASE WHEN PRODUCT_NAME = 'iPhone' THEN 1 ELSE 0 END) = 0;
+```
+![1083](1083.png)
+
+<br><br><br>
+
+
+
+
 
 
 
